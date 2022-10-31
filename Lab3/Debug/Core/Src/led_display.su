@@ -1,0 +1,7 @@
+led_display.c:29:6:setLED	8	static
+led_display.c:36:6:update_clock_buffer	16	static
+led_display.c:43:6:update_clock_buffer1	16	static
+led_display.c:48:6:update_clock_buffer2	16	static
+led_display.c:53:6:update_seven_segment_driver	16	static
+led_display.c:78:6:seven_segment_driver_1	16	static
+led_display.c:88:6:seven_segment_driver_2	16	static
