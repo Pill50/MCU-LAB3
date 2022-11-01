@@ -22,15 +22,9 @@ void setTimer(int duration){
 void timer_run(){
 	if (timer0_counter > 0){
 		timer0_counter--;
-		if (timer0_counter > 50){
-			led_7_flag = 1;
-		}
-		else {
-			led_7_flag = 0;
-		}
-		if(timer0_counter % 25 == 0){
-			blink_flag = 1;
-		}
+		if (timer0_counter > 50) led_7_flag = 1;
+		else  led_7_flag = 0;
+		if(timer0_counter % 25 == 0) blink_flag = 1;
 		else blink_flag = 0;
 		if (timer0_counter == 0) timer0_flag = 1;
 	}

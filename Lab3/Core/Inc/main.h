@@ -84,6 +84,8 @@ void Error_Handler(void);
 #define EN2_GPIO_Port GPIOB
 #define EN3_Pin GPIO_PIN_12
 #define EN3_GPIO_Port GPIOB
+#define LED_TOGGLE_Pin GPIO_PIN_13
+#define LED_TOGGLE_GPIO_Port GPIOB
 #define SEG_A2_Pin GPIO_PIN_8
 #define SEG_A2_GPIO_Port GPIOA
 #define SEG_B2_Pin GPIO_PIN_9

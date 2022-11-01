@@ -40,12 +40,12 @@ void update_clock_buffer(uint8_t time1,uint8_t time2){
 	numBuffer[3] = time2%10;
 }
 
-void update_clock_buffer1(uint8_t time1) {
+void update_clock_horizontal(uint8_t time1) {
 	numBuffer[0] = time1/10;
 	numBuffer[1] = time1%10;
 }
 
-void update_clock_buffer2(uint8_t time2) {
+void update_clock_vertical(uint8_t time2) {
 	numBuffer[2] = time2/10;
 	numBuffer[3] = time2%10;
 }

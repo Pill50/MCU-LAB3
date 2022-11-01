@@ -1,5 +1,6 @@
-Core/Src/input_processing.o: ../Core/Src/input_processing.c \
- ../Core/Inc/main.h ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h \
+Core/Src/ouput_processing.o: ../Core/Src/ouput_processing.c \
+ ../Core/Inc/output_processing.h ../Core/Inc/main.h \
+ ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h \
  ../Core/Inc/stm32f1xx_hal_conf.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h \
@@ -25,6 +26,8 @@ Core/Src/input_processing.o: ../Core/Src/input_processing.c \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
  ../Core/Inc/input_reading.h ../Core/Inc/software_timer.h \
  ../Core/Inc/traffic_led.h ../Core/Inc/led_display.h
+
+../Core/Inc/output_processing.h:
 
 ../Core/Inc/main.h:
 

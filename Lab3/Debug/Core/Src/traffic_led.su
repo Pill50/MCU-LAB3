@@ -1,6 +1,6 @@
-traffic_led.c:27:6:LED_TRAFFIC_STORE_BUFFER	16	static
-traffic_led.c:31:6:LED_TRAFFIC_LOAD_BUFFER	4	static
-traffic_led.c:43:6:LED_TRAFFIC_INIT	8	static
-traffic_led.c:52:6:LED_VERTICAL_RUN	8	static
-traffic_led.c:85:6:LED_HORIZONTAL_RUN	8	static
-traffic_led.c:173:6:LED_TRAFFIC_RUN	8	static
+traffic_led.c:23:6:LED_TRAFFIC_STORE_BUFFER	16	static
+traffic_led.c:27:6:LED_TRAFFIC_LOAD_BUFFER	4	static
+traffic_led.c:39:6:LED_TRAFFIC_INIT	8	static
+traffic_led.c:48:6:LED_VERTICAL_RUN	8	static
+traffic_led.c:81:6:LED_HORIZONTAL_RUN	8	static
+traffic_led.c:113:6:LED_TRAFFIC_RUN	8	static
