@@ -8,8 +8,6 @@
 #include "main.h"
 #include "led_display.h"
 
-#define HORIZONTAL 0
-#define VERTICAL   1
 #define NUMBER_OF_7_SEG_LED 4
 
 static uint8_t LED7Conversion[10]={

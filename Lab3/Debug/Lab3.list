@@ -27,23 +27,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  11 .ARM.attributes 00000029  00000000  00000000  00020020  2**0
                   CONTENTS, READONLY
- 12 .debug_info   0000919d  00000000  00000000  00020049  2**0
+ 12 .debug_info   000091c1  00000000  00000000  00020049  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_abbrev 00001b4a  00000000  00000000  000291e6  2**0
+ 13 .debug_abbrev 00001b4a  00000000  00000000  0002920a  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_aranges 00000a48  00000000  00000000  0002ad30  2**3
+ 14 .debug_aranges 00000a48  00000000  00000000  0002ad58  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_ranges 00000950  00000000  00000000  0002b778  2**3
+ 15 .debug_ranges 00000950  00000000  00000000  0002b7a0  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  00016c00  00000000  00000000  0002c0c8  2**0
+ 16 .debug_macro  00016bf4  00000000  00000000  0002c0f0  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   0000b818  00000000  00000000  00042cc8  2**0
+ 17 .debug_line   0000b818  00000000  00000000  00042ce4  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    000822b5  00000000  00000000  0004e4e0  2**0
+ 18 .debug_str    000822af  00000000  00000000  0004e4fc  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000053  00000000  00000000  000d0795  2**0
+ 19 .comment      00000053  00000000  00000000  000d07ab  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  000028d8  00000000  00000000  000d07e8  2**2
+ 20 .debug_frame  000028d8  00000000  00000000  000d0800  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -1143,8 +1143,8 @@ void fsm_for_output_processing (void){
  8000806:	4b9c      	ldr	r3, [pc, #624]	; (8000a78 <fsm_for_output_processing+0x2bc>)
  8000808:	2200      	movs	r2, #0
  800080a:	601a      	str	r2, [r3, #0]
-			setLED7Timer(100);
- 800080c:	2064      	movs	r0, #100	; 0x64
+			setLED7Timer(250);
+ 800080c:	20fa      	movs	r0, #250	; 0xfa
  800080e:	f000 fa3f 	bl	8000c90 <setLED7Timer>
 		}
 		// BUTTON_0 PRESS
@@ -1154,12 +1154,12 @@ void fsm_for_output_processing (void){
  8000818:	4603      	mov	r3, r0
  800081a:	2b01      	cmp	r3, #1
  800081c:	d113      	bne.n	8000846 <fsm_for_output_processing+0x8a>
-			if(executive0 == 0) {
+			if(buttonflag0 == 0) {
  800081e:	4b97      	ldr	r3, [pc, #604]	; (8000a7c <fsm_for_output_processing+0x2c0>)
  8000820:	781b      	ldrb	r3, [r3, #0]
  8000822:	2b00      	cmp	r3, #0
  8000824:	d112      	bne.n	800084c <fsm_for_output_processing+0x90>
-				executive0 = 1;
+				buttonflag0 = 1;			//update buttonflag0 to avoid change mode randomly
  8000826:	4b95      	ldr	r3, [pc, #596]	; (8000a7c <fsm_for_output_processing+0x2c0>)
  8000828:	2201      	movs	r2, #1
  800082a:	701a      	strb	r2, [r3, #0]
@@ -1179,7 +1179,7 @@ void fsm_for_output_processing (void){
  8000844:	e002      	b.n	800084c <fsm_for_output_processing+0x90>
 			}
 		} else {
-			executive0 = 0;
+			buttonflag0 = 0;				// update buttonflag0 when button0 is realeased
  8000846:	4b8d      	ldr	r3, [pc, #564]	; (8000a7c <fsm_for_output_processing+0x2c0>)
  8000848:	2200      	movs	r2, #0
  800084a:	701a      	strb	r2, [r3, #0]
@@ -1272,12 +1272,12 @@ void fsm_for_output_processing (void){
  80008d8:	4603      	mov	r3, r0
  80008da:	2b00      	cmp	r3, #0
  80008dc:	d013      	beq.n	8000906 <fsm_for_output_processing+0x14a>
-			if(executive0 == 0) {
+			if(buttonflag0 == 0) {
  80008de:	4b67      	ldr	r3, [pc, #412]	; (8000a7c <fsm_for_output_processing+0x2c0>)
  80008e0:	781b      	ldrb	r3, [r3, #0]
  80008e2:	2b00      	cmp	r3, #0
  80008e4:	d112      	bne.n	800090c <fsm_for_output_processing+0x150>
-				executive0 = 1;
+				buttonflag0 = 1;	//update buttonflag0 to avoid change mode randomly
  80008e6:	4b65      	ldr	r3, [pc, #404]	; (8000a7c <fsm_for_output_processing+0x2c0>)
  80008e8:	2201      	movs	r2, #1
  80008ea:	701a      	strb	r2, [r3, #0]
@@ -1297,7 +1297,7 @@ void fsm_for_output_processing (void){
  8000904:	e002      	b.n	800090c <fsm_for_output_processing+0x150>
 			}
 		} else {
-			executive0 = 0;
+			buttonflag0 = 0;		//update buttonflag0 when button0 is realeased
  8000906:	4b5d      	ldr	r3, [pc, #372]	; (8000a7c <fsm_for_output_processing+0x2c0>)
  8000908:	2200      	movs	r2, #0
  800090a:	701a      	strb	r2, [r3, #0]
@@ -1309,12 +1309,12 @@ void fsm_for_output_processing (void){
  8000912:	4603      	mov	r3, r0
  8000914:	2b00      	cmp	r3, #0
  8000916:	d01a      	beq.n	800094e <fsm_for_output_processing+0x192>
-			if(executive1 == 0) {
+			if(buttonflag1 == 0) {
  8000918:	4b5f      	ldr	r3, [pc, #380]	; (8000a98 <fsm_for_output_processing+0x2dc>)
  800091a:	781b      	ldrb	r3, [r3, #0]
  800091c:	2b00      	cmp	r3, #0
  800091e:	d119      	bne.n	8000954 <fsm_for_output_processing+0x198>
-				executive1 = 1;
+				buttonflag1 = 1;	//update buttonflag1 to avoid change mode randomly
  8000920:	4b5d      	ldr	r3, [pc, #372]	; (8000a98 <fsm_for_output_processing+0x2dc>)
  8000922:	2201      	movs	r2, #1
  8000924:	701a      	strb	r2, [r3, #0]
@@ -1339,7 +1339,7 @@ void fsm_for_output_processing (void){
  800094a:	701a      	strb	r2, [r3, #0]
  800094c:	e002      	b.n	8000954 <fsm_for_output_processing+0x198>
 			}
-		} else executive1 = 0;
+		} else buttonflag1 = 0;		//update buttonflag1 when button1 is realeased
  800094e:	4b52      	ldr	r3, [pc, #328]	; (8000a98 <fsm_for_output_processing+0x2dc>)
  8000950:	2200      	movs	r2, #0
  8000952:	701a      	strb	r2, [r3, #0]
@@ -1350,12 +1350,12 @@ void fsm_for_output_processing (void){
  800095a:	4603      	mov	r3, r0
  800095c:	2b00      	cmp	r3, #0
  800095e:	d00d      	beq.n	800097c <fsm_for_output_processing+0x1c0>
-			if(executive2 == 0) {
+			if(buttonflag2 == 0) {
  8000960:	4b4f      	ldr	r3, [pc, #316]	; (8000aa0 <fsm_for_output_processing+0x2e4>)
  8000962:	781b      	ldrb	r3, [r3, #0]
  8000964:	2b00      	cmp	r3, #0
  8000966:	d10c      	bne.n	8000982 <fsm_for_output_processing+0x1c6>
-				executive2 = 1;
+				buttonflag2 = 1;	//update buttonflag2 to avoid change mode randomly
  8000968:	4b4d      	ldr	r3, [pc, #308]	; (8000aa0 <fsm_for_output_processing+0x2e4>)
  800096a:	2201      	movs	r2, #1
  800096c:	701a      	strb	r2, [r3, #0]
@@ -1368,7 +1368,7 @@ void fsm_for_output_processing (void){
  800097a:	e002      	b.n	8000982 <fsm_for_output_processing+0x1c6>
 			}
 		} else {
-			executive2 = 0;
+			buttonflag2 = 0;		//update buttonflag2 when button2 is realeased
  800097c:	4b48      	ldr	r3, [pc, #288]	; (8000aa0 <fsm_for_output_processing+0x2e4>)
  800097e:	2200      	movs	r2, #0
  8000980:	701a      	strb	r2, [r3, #0]
@@ -1447,12 +1447,12 @@ void fsm_for_output_processing (void){
  80009fa:	4603      	mov	r3, r0
  80009fc:	2b00      	cmp	r3, #0
  80009fe:	d013      	beq.n	8000a28 <fsm_for_output_processing+0x26c>
-			if(executive0 == 0) {
+			if(buttonflag0 == 0) {
  8000a00:	4b1e      	ldr	r3, [pc, #120]	; (8000a7c <fsm_for_output_processing+0x2c0>)
  8000a02:	781b      	ldrb	r3, [r3, #0]
  8000a04:	2b00      	cmp	r3, #0
  8000a06:	d112      	bne.n	8000a2e <fsm_for_output_processing+0x272>
-				executive0 = 1;
+				buttonflag0 = 1;	//update buttonflag0 to avoid change mode randomly
  8000a08:	4b1c      	ldr	r3, [pc, #112]	; (8000a7c <fsm_for_output_processing+0x2c0>)
  8000a0a:	2201      	movs	r2, #1
  8000a0c:	701a      	strb	r2, [r3, #0]
@@ -1472,7 +1472,7 @@ void fsm_for_output_processing (void){
  8000a26:	e002      	b.n	8000a2e <fsm_for_output_processing+0x272>
 			}
 		} else {
-			executive0 = 0;
+			buttonflag0 = 0;		//update buttonflag0 when button0 is realeased
  8000a28:	4b14      	ldr	r3, [pc, #80]	; (8000a7c <fsm_for_output_processing+0x2c0>)
  8000a2a:	2200      	movs	r2, #0
  8000a2c:	701a      	strb	r2, [r3, #0]
@@ -1484,12 +1484,12 @@ void fsm_for_output_processing (void){
  8000a34:	4603      	mov	r3, r0
  8000a36:	2b00      	cmp	r3, #0
  8000a38:	d036      	beq.n	8000aa8 <fsm_for_output_processing+0x2ec>
-			if(executive1 == 0) {
+			if(buttonflag1 == 0) {
  8000a3a:	4b17      	ldr	r3, [pc, #92]	; (8000a98 <fsm_for_output_processing+0x2dc>)
  8000a3c:	781b      	ldrb	r3, [r3, #0]
  8000a3e:	2b00      	cmp	r3, #0
  8000a40:	d135      	bne.n	8000aae <fsm_for_output_processing+0x2f2>
-				executive1 = 1;
+				buttonflag1 = 1;	//update buttonflag1 to avoid change mode randomly
  8000a42:	4b15      	ldr	r3, [pc, #84]	; (8000a98 <fsm_for_output_processing+0x2dc>)
  8000a44:	2201      	movs	r2, #1
  8000a46:	701a      	strb	r2, [r3, #0]
@@ -1529,7 +1529,7 @@ void fsm_for_output_processing (void){
  8000aa4:	20000053 	.word	0x20000053
 			}
 		} else {
-			executive1 = 0;
+			buttonflag1 = 0;		//update buttonflag1 when button1 is realeased
  8000aa8:	4b5f      	ldr	r3, [pc, #380]	; (8000c28 <fsm_for_output_processing+0x46c>)
  8000aaa:	2200      	movs	r2, #0
  8000aac:	701a      	strb	r2, [r3, #0]
@@ -1541,12 +1541,12 @@ void fsm_for_output_processing (void){
  8000ab4:	4603      	mov	r3, r0
  8000ab6:	2b00      	cmp	r3, #0
  8000ab8:	d00d      	beq.n	8000ad6 <fsm_for_output_processing+0x31a>
-			if(executive2 == 0) {
+			if(buttonflag2 == 0) {
  8000aba:	4b5c      	ldr	r3, [pc, #368]	; (8000c2c <fsm_for_output_processing+0x470>)
  8000abc:	781b      	ldrb	r3, [r3, #0]
  8000abe:	2b00      	cmp	r3, #0
  8000ac0:	d10c      	bne.n	8000adc <fsm_for_output_processing+0x320>
-				executive2 = 1;
+				buttonflag2 = 1;	//update buttonflag2 to avoid change mode randomly
  8000ac2:	4b5a      	ldr	r3, [pc, #360]	; (8000c2c <fsm_for_output_processing+0x470>)
  8000ac4:	2201      	movs	r2, #1
  8000ac6:	701a      	strb	r2, [r3, #0]
@@ -1559,7 +1559,7 @@ void fsm_for_output_processing (void){
  8000ad4:	e002      	b.n	8000adc <fsm_for_output_processing+0x320>
 			}
 		} else {
-			executive2 = 0;
+			buttonflag2 = 0;		//update buttonflag2 when button2 is realeased
  8000ad6:	4b55      	ldr	r3, [pc, #340]	; (8000c2c <fsm_for_output_processing+0x470>)
  8000ad8:	2200      	movs	r2, #0
  8000ada:	701a      	strb	r2, [r3, #0]
@@ -1638,12 +1638,12 @@ void fsm_for_output_processing (void){
  8000b52:	4603      	mov	r3, r0
  8000b54:	2b00      	cmp	r3, #0
  8000b56:	d012      	beq.n	8000b7e <fsm_for_output_processing+0x3c2>
-			if(executive0 == 0) {
+			if(buttonflag0 == 0) {
  8000b58:	4b3c      	ldr	r3, [pc, #240]	; (8000c4c <fsm_for_output_processing+0x490>)
  8000b5a:	781b      	ldrb	r3, [r3, #0]
  8000b5c:	2b00      	cmp	r3, #0
  8000b5e:	d111      	bne.n	8000b84 <fsm_for_output_processing+0x3c8>
-				executive0 = 1;
+				buttonflag0 = 1;	//update buttonflag0 to avoid change mode randomly
  8000b60:	4b3a      	ldr	r3, [pc, #232]	; (8000c4c <fsm_for_output_processing+0x490>)
  8000b62:	2201      	movs	r2, #1
  8000b64:	701a      	strb	r2, [r3, #0]
@@ -1661,7 +1661,7 @@ void fsm_for_output_processing (void){
  8000b7c:	e002      	b.n	8000b84 <fsm_for_output_processing+0x3c8>
 			}
 		} else {
-			executive0 = 0;
+			buttonflag0 = 0;		//update buttonflag0 when button0 is realeased
  8000b7e:	4b33      	ldr	r3, [pc, #204]	; (8000c4c <fsm_for_output_processing+0x490>)
  8000b80:	2200      	movs	r2, #0
  8000b82:	701a      	strb	r2, [r3, #0]
@@ -1673,12 +1673,12 @@ void fsm_for_output_processing (void){
  8000b8a:	4603      	mov	r3, r0
  8000b8c:	2b00      	cmp	r3, #0
  8000b8e:	d01a      	beq.n	8000bc6 <fsm_for_output_processing+0x40a>
-			if(executive1 == 0) {
+			if(buttonflag1 == 0) {
  8000b90:	4b25      	ldr	r3, [pc, #148]	; (8000c28 <fsm_for_output_processing+0x46c>)
  8000b92:	781b      	ldrb	r3, [r3, #0]
  8000b94:	2b00      	cmp	r3, #0
  8000b96:	d119      	bne.n	8000bcc <fsm_for_output_processing+0x410>
-				executive1 = 1;
+				buttonflag1 = 1;	//update buttonflag1 to avoid change mode randomly
  8000b98:	4b23      	ldr	r3, [pc, #140]	; (8000c28 <fsm_for_output_processing+0x46c>)
  8000b9a:	2201      	movs	r2, #1
  8000b9c:	701a      	strb	r2, [r3, #0]
@@ -1704,7 +1704,7 @@ void fsm_for_output_processing (void){
  8000bc4:	e002      	b.n	8000bcc <fsm_for_output_processing+0x410>
 			}
 		} else {
-			executive1 = 0;
+			buttonflag1 = 0;		//update buttonflag1 when button1 is realeased
  8000bc6:	4b18      	ldr	r3, [pc, #96]	; (8000c28 <fsm_for_output_processing+0x46c>)
  8000bc8:	2200      	movs	r2, #0
  8000bca:	701a      	strb	r2, [r3, #0]
@@ -1716,12 +1716,12 @@ void fsm_for_output_processing (void){
  8000bd2:	4603      	mov	r3, r0
  8000bd4:	2b00      	cmp	r3, #0
  8000bd6:	d00d      	beq.n	8000bf4 <fsm_for_output_processing+0x438>
-			if(executive2 == 0) {
+			if(buttonflag2 == 0) {
  8000bd8:	4b14      	ldr	r3, [pc, #80]	; (8000c2c <fsm_for_output_processing+0x470>)
  8000bda:	781b      	ldrb	r3, [r3, #0]
  8000bdc:	2b00      	cmp	r3, #0
  8000bde:	d10c      	bne.n	8000bfa <fsm_for_output_processing+0x43e>
-				executive2 = 1;
+				buttonflag2 = 1;	//update buttonflag2 to avoid change mode randomly
  8000be0:	4b12      	ldr	r3, [pc, #72]	; (8000c2c <fsm_for_output_processing+0x470>)
  8000be2:	2201      	movs	r2, #1
  8000be4:	701a      	strb	r2, [r3, #0]
@@ -1734,7 +1734,7 @@ void fsm_for_output_processing (void){
  8000bf2:	e002      	b.n	8000bfa <fsm_for_output_processing+0x43e>
 			}
 		} else {
-			executive2 = 0;
+			buttonflag2 = 0;		//update buttonflag2 when button2 is realeased
  8000bf4:	4b0d      	ldr	r3, [pc, #52]	; (8000c2c <fsm_for_output_processing+0x470>)
  8000bf6:	2200      	movs	r2, #0
  8000bf8:	701a      	strb	r2, [r3, #0]
@@ -1788,7 +1788,7 @@ void fsm_for_output_processing (void){
  8000c54:	a57eb503 	.word	0xa57eb503
 
 08000c58 <setTimer>:
-//define flag
+// initialize flag
 int timer0_flag = 0;
 int led_7_flag = 0;
 int blink_flag = 0;

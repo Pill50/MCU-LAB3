@@ -1,6 +1,6 @@
-led_display.c:35:6:clearAllLED7	8	static
-led_display.c:43:6:update_all_clock_buffer	16	static
-led_display.c:51:6:update_horizontal_clock_buffer	16	static
-led_display.c:57:6:update_vertical_clock_buffer	16	static
-led_display.c:63:6:update_LED7_driver	16	static
-led_display.c:90:6:displayLED7	16	static
+led_display.c:33:6:clearAllLED7	8	static
+led_display.c:41:6:update_all_clock_buffer	16	static
+led_display.c:49:6:update_horizontal_clock_buffer	16	static
+led_display.c:55:6:update_vertical_clock_buffer	16	static
+led_display.c:61:6:update_LED7_driver	16	static
+led_display.c:88:6:displayLED7	16	static

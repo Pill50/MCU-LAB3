@@ -18,10 +18,8 @@ enum MODE Mode = MODE_1;
 // counter_mode2, counter_mode3, counter_mode4 to save time of led_traffic
 static uint8_t counter_mode2, counter_mode3, counter_mode4;
 
-// executive0, executive1, executive2 to avoid wrong mode when simulation by press button.
-// Ex: If I press button_0 to change mode 1 to mode 2 and then in mode 2 button_0 is also press
-// so it change to mode 3.
-static uint8_t executive0, executive1, executive2;
+// buttonflag0, buttonflag1, buttonflag2 to check button press and release, avoid change mode randomly
+static uint8_t buttonflag0, buttonflag1, buttonflag2;
 
 // variable init to check INIT_TRAFFIC_LED when we start simulation
 int init = 0, index_led7 = 0;
@@ -39,15 +37,15 @@ void fsm_for_output_processing (void){
 		}
 		// BUTTON_0 PRESS
 		if (is_button_pressed(0) == 1){
-			if(executive0 == 0) {
-				executive0 = 1;
+			if(buttonflag0 == 0) {
+				buttonflag0 = 1;			//update buttonflag0 to avoid change mode randomly
 				Mode = MODE_2;
 				counter_mode2 = 0;
 				LED_TRAFFIC_INIT();
 				setTimer(1000);
 			}
 		} else {
-			executive0 = 0;
+			buttonflag0 = 0;				// update buttonflag0 when button0 is realeased
 		}
 		// SET_TIMER 1S IF DONT PRESS AND INIT LED_TRAFFIC
 		if (timer0_flag == 1){
@@ -76,31 +74,31 @@ void fsm_for_output_processing (void){
 		}
 		// BUTTON_0 PRESS
 		if (is_button_pressed(0)){
-			if(executive0 == 0) {
-				executive0 = 1;
+			if(buttonflag0 == 0) {
+				buttonflag0 = 1;	//update buttonflag0 to avoid change mode randomly
 				Mode = MODE_3;
 				counter_mode3 = 0;
 				LED_TRAFFIC_INIT();
 				setTimer(1000);
 			}
 		} else {
-			executive0 = 0;
+			buttonflag0 = 0;		//update buttonflag0 when button0 is realeased
 		}
 		// BUTTON_1 PRESS
 		if (is_button_pressed(1)){
-			if(executive1 == 0) {
-				executive1 = 1;
+			if(buttonflag1 == 0) {
+				buttonflag1 = 1;	//update buttonflag1 to avoid change mode randomly
 				counter_mode2 = (counter_mode2 + 1) % 99;
 			}
-		} else executive1 = 0;
+		} else buttonflag1 = 0;		//update buttonflag1 when button1 is realeased
 		// BUTTON_2 PRESS
 		if (is_button_pressed(2)){
-			if(executive2 == 0) {
-				executive2 = 1;
+			if(buttonflag2 == 0) {
+				buttonflag2 = 1;	//update buttonflag2 to avoid change mode randomly
 				LED_TRAFFIC_STORE_BUFFER(counter_mode2, RED);
 			}
 		} else {
-			executive2 = 0;
+			buttonflag2 = 0;		//update buttonflag2 when button2 is realeased
 		}
 		// SET_TIMER 1S IF DONT PRESS
 		if (timer0_flag == 1){
@@ -124,33 +122,33 @@ void fsm_for_output_processing (void){
 		}
 		// BUTTON_0 PRESS
 		if (is_button_pressed(0)){
-			if(executive0 == 0) {
-				executive0 = 1;
+			if(buttonflag0 == 0) {
+				buttonflag0 = 1;	//update buttonflag0 to avoid change mode randomly
 				Mode = MODE_4;
 				counter_mode4 = 0;
 				LED_TRAFFIC_INIT();
 				setTimer(1000);
 			}
 		} else {
-			executive0 = 0;
+			buttonflag0 = 0;		//update buttonflag0 when button0 is realeased
 		}
 		// BUTTON_1 PRESS
 		if (is_button_pressed(1)){
-			if(executive1 == 0) {
-				executive1 = 1;
+			if(buttonflag1 == 0) {
+				buttonflag1 = 1;	//update buttonflag1 to avoid change mode randomly
 				counter_mode3 = (counter_mode3 + 1) % 99;
 			}
 		} else {
-			executive1 = 0;
+			buttonflag1 = 0;		//update buttonflag1 when button1 is realeased
 		}
 		// BUTTON_2 PRESS
 		if (is_button_pressed(2)){
-			if(executive2 == 0) {
-				executive2 = 1;
+			if(buttonflag2 == 0) {
+				buttonflag2 = 1;	//update buttonflag2 to avoid change mode randomly
 				LED_TRAFFIC_STORE_BUFFER(counter_mode3, AMBER);
 			}
 		} else {
-			executive2 = 0;
+			buttonflag2 = 0;		//update buttonflag2 when button2 is realeased
 		}
 		// SET_TIMER 1S IF DONT PRESS
 		if (timer0_flag == 1){
@@ -174,33 +172,33 @@ void fsm_for_output_processing (void){
 		}
 		// BUTTON_0 PRESS
 		if (is_button_pressed(0)){
-			if(executive0 == 0) {
-				executive0 = 1;
+			if(buttonflag0 == 0) {
+				buttonflag0 = 1;	//update buttonflag0 to avoid change mode randomly
 				Mode = MODE_1;
 				LED_TRAFFIC_LOAD_BUFFER();
 				LED_TRAFFIC_INIT();
 				setTimer(1000);
 			}
 		} else {
-			executive0 = 0;
+			buttonflag0 = 0;		//update buttonflag0 when button0 is realeased
 		}
 		// BUTTON_1 PRESS
 		if (is_button_pressed(1)){
-			if(executive1 == 0) {
-				executive1 = 1;
+			if(buttonflag1 == 0) {
+				buttonflag1 = 1;	//update buttonflag1 to avoid change mode randomly
 				counter_mode4 = (counter_mode4 + 1) % 99;
 			}
 		} else {
-			executive1 = 0;
+			buttonflag1 = 0;		//update buttonflag1 when button1 is realeased
 		}
 		// BUTTON_2 PRESS
 		if (is_button_pressed(2)){
-			if(executive2 == 0) {
-				executive2 = 1;
+			if(buttonflag2 == 0) {
+				buttonflag2 = 1;	//update buttonflag2 to avoid change mode randomly
 				LED_TRAFFIC_STORE_BUFFER(counter_mode4, GREEN);
 			}
 		} else {
-			executive2 = 0;
+			buttonflag2 = 0;		//update buttonflag2 when button2 is realeased
 		}
 		// SET_TIMER 1S IF DONT PRESS
 		if (timer0_flag == 1){

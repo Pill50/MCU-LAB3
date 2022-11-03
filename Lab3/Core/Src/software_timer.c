@@ -9,15 +9,15 @@
 #include "input_reading.h"
 #include "software_timer.h"
 
-// define counter
+// initialize counter
 int timer0_counter;
 int led7_counter;
 int blink_counter;
 
-//define flag
-int timer0_flag = 0;	//time_flag
-int led_7_flag = 0;		//led7_flag
-int blink_flag = 0;		//led_traffic_blink_flag
+// initialize flag
+int timer0_flag = 0;
+int led_7_flag = 0;
+int blink_flag = 0;
 
 void setTimer(int duration){
 	timer0_counter = duration/TIMER_CYCLE;
