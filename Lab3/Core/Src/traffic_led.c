@@ -20,8 +20,13 @@ static uint8_t bufferTimerForLED[N0_OF_LED];
 static uint8_t counterRED1, counterAMBER1, counterGREEN1,  counterRED2, counterAMBER2, counterGREEN2;
 static uint8_t timeRED, timeAMBER, timeGREEN;
 
-void LED_TRAFFIC_STORE_BUFFER(uint8_t time, uint8_t index){
-	bufferTimerForLED[index] = time;
+void LED_TRAFFIC_INIT(void){
+	HAL_GPIO_WritePin(LED_RED1_GPIO_Port, LED_RED1_Pin, SET);
+	HAL_GPIO_WritePin(LED_RED2_GPIO_Port, LED_RED2_Pin, SET);
+	HAL_GPIO_WritePin(LED_AMBER1_GPIO_Port, LED_AMBER1_Pin, SET);
+	HAL_GPIO_WritePin(LED_AMBER2_GPIO_Port, LED_AMBER2_Pin, SET);
+	HAL_GPIO_WritePin(LED_GREEN1_GPIO_Port, LED_GREEN1_Pin, SET);
+	HAL_GPIO_WritePin(LED_GREEN2_GPIO_Port, LED_GREEN2_Pin, SET);
 }
 
 void LED_TRAFFIC_LOAD_BUFFER(void){
@@ -36,13 +41,8 @@ void LED_TRAFFIC_LOAD_BUFFER(void){
 	timeGREEN = bufferTimerForLED[GREEN];
 }
 
-void LED_TRAFFIC_INIT(void){
-	HAL_GPIO_WritePin(LED_RED1_GPIO_Port, LED_RED1_Pin, SET);
-	HAL_GPIO_WritePin(LED_RED2_GPIO_Port, LED_RED2_Pin, SET);
-	HAL_GPIO_WritePin(LED_AMBER1_GPIO_Port, LED_AMBER1_Pin, SET);
-	HAL_GPIO_WritePin(LED_AMBER2_GPIO_Port, LED_AMBER2_Pin, SET);
-	HAL_GPIO_WritePin(LED_GREEN1_GPIO_Port, LED_GREEN1_Pin, SET);
-	HAL_GPIO_WritePin(LED_GREEN2_GPIO_Port, LED_GREEN2_Pin, SET);
+void LED_TRAFFIC_STORE_BUFFER(uint8_t time, uint8_t index){
+	bufferTimerForLED[index] = time;
 }
 
 void LED_VERTICAL_RUN(void) {

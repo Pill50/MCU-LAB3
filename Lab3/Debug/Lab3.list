@@ -27,23 +27,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  11 .ARM.attributes 00000029  00000000  00000000  00020020  2**0
                   CONTENTS, READONLY
- 12 .debug_info   0000913a  00000000  00000000  00020049  2**0
+ 12 .debug_info   0000913e  00000000  00000000  00020049  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_abbrev 00001b2a  00000000  00000000  00029183  2**0
+ 13 .debug_abbrev 00001b2c  00000000  00000000  00029187  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_aranges 00000a40  00000000  00000000  0002acb0  2**3
+ 14 .debug_aranges 00000a40  00000000  00000000  0002acb8  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_ranges 00000948  00000000  00000000  0002b6f0  2**3
+ 15 .debug_ranges 00000948  00000000  00000000  0002b6f8  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  00016c54  00000000  00000000  0002c038  2**0
+ 16 .debug_macro  00016c48  00000000  00000000  0002c040  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   0000b7bd  00000000  00000000  00042c8c  2**0
+ 17 .debug_line   0000b7bd  00000000  00000000  00042c88  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    000823f0  00000000  00000000  0004e449  2**0
+ 18 .debug_str    000823ba  00000000  00000000  0004e445  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000053  00000000  00000000  000d0839  2**0
+ 19 .comment      00000053  00000000  00000000  000d07ff  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  000028ac  00000000  00000000  000d088c  2**2
+ 20 .debug_frame  000028ac  00000000  00000000  000d0854  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -799,17 +799,17 @@ int main(void)
   LED_TRAFFIC_STORE_BUFFER(5, 0);
  800067e:	2100      	movs	r1, #0
  8000680:	2005      	movs	r0, #5
- 8000682:	f000 fbe7 	bl	8000e54 <LED_TRAFFIC_STORE_BUFFER>
+ 8000682:	f000 fc4b 	bl	8000f1c <LED_TRAFFIC_STORE_BUFFER>
   LED_TRAFFIC_STORE_BUFFER(2, 1);
  8000686:	2101      	movs	r1, #1
  8000688:	2002      	movs	r0, #2
- 800068a:	f000 fbe3 	bl	8000e54 <LED_TRAFFIC_STORE_BUFFER>
+ 800068a:	f000 fc47 	bl	8000f1c <LED_TRAFFIC_STORE_BUFFER>
   LED_TRAFFIC_STORE_BUFFER(3, 2);
  800068e:	2102      	movs	r1, #2
  8000690:	2003      	movs	r0, #3
- 8000692:	f000 fbdf 	bl	8000e54 <LED_TRAFFIC_STORE_BUFFER>
+ 8000692:	f000 fc43 	bl	8000f1c <LED_TRAFFIC_STORE_BUFFER>
   LED_TRAFFIC_LOAD_BUFFER();
- 8000696:	f000 fbf1 	bl	8000e7c <LED_TRAFFIC_LOAD_BUFFER>
+ 8000696:	f000 fc03 	bl	8000ea0 <LED_TRAFFIC_LOAD_BUFFER>
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -1075,9 +1075,9 @@ static void MX_GPIO_Init(void)
                           |SEG_F2_Pin|SEG_G2_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, EN1_Pin|EN2_Pin|EN3_Pin|LED_TOGGLE_Pin
+  HAL_GPIO_WritePin(GPIOB, EN1_Pin|EN2_Pin|EN3_Pin|LED_RED1_Pin
  800080c:	2200      	movs	r2, #0
- 800080e:	f643 71f8 	movw	r1, #16376	; 0x3ff8
+ 800080e:	f641 71f8 	movw	r1, #8184	; 0x1ff8
  8000812:	481a      	ldr	r0, [pc, #104]	; (800087c <MX_GPIO_Init+0xc0>)
  8000814:	f000 ffc5 	bl	80017a2 <HAL_GPIO_WritePin>
 
@@ -1122,14 +1122,14 @@ static void MX_GPIO_Init(void)
  8000848:	480c      	ldr	r0, [pc, #48]	; (800087c <MX_GPIO_Init+0xc0>)
  800084a:	f000 fe19 	bl	8001480 <HAL_GPIO_Init>
 
-  /*Configure GPIO pins : EN1_Pin EN2_Pin EN3_Pin LED_TOGGLE_Pin
-                           LED_RED1_Pin LED_GREEN1_Pin LED_AMBER1_Pin LED_RED2_Pin
-                           LED_GREEN2_Pin LED_AMBER2_Pin EN0_Pin */
-  GPIO_InitStruct.Pin = EN1_Pin|EN2_Pin|EN3_Pin|LED_TOGGLE_Pin
- 800084e:	f643 73f8 	movw	r3, #16376	; 0x3ff8
+  /*Configure GPIO pins : EN1_Pin EN2_Pin EN3_Pin LED_RED1_Pin
+                           LED_GREEN1_Pin LED_AMBER1_Pin LED_RED2_Pin LED_GREEN2_Pin
+                           LED_AMBER2_Pin EN0_Pin */
+  GPIO_InitStruct.Pin = EN1_Pin|EN2_Pin|EN3_Pin|LED_RED1_Pin
+ 800084e:	f641 73f8 	movw	r3, #8184	; 0x1ff8
  8000852:	60bb      	str	r3, [r7, #8]
-                          |LED_RED1_Pin|LED_GREEN1_Pin|LED_AMBER1_Pin|LED_RED2_Pin
-                          |LED_GREEN2_Pin|LED_AMBER2_Pin|EN0_Pin;
+                          |LED_GREEN1_Pin|LED_AMBER1_Pin|LED_RED2_Pin|LED_GREEN2_Pin
+                          |LED_AMBER2_Pin|EN0_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
  8000854:	2301      	movs	r3, #1
  8000856:	60fb      	str	r3, [r7, #12]
@@ -1245,7 +1245,7 @@ void fsm_for_output_processing (void){
  80008f0:	2200      	movs	r2, #0
  80008f2:	701a      	strb	r2, [r3, #0]
 				LED_TRAFFIC_INIT();
- 80008f4:	f000 fb00 	bl	8000ef8 <LED_TRAFFIC_INIT>
+ 80008f4:	f000 faae 	bl	8000e54 <LED_TRAFFIC_INIT>
 				setTimer(1000);
  80008f8:	f44f 707a 	mov.w	r0, #1000	; 0x3e8
  80008fc:	f000 f9be 	bl	8000c7c <setTimer>
@@ -1272,7 +1272,7 @@ void fsm_for_output_processing (void){
  800091c:	2b00      	cmp	r3, #0
  800091e:	d104      	bne.n	800092a <fsm_for_output_processing+0x86>
 				LED_TRAFFIC_INIT();
- 8000920:	f000 faea 	bl	8000ef8 <LED_TRAFFIC_INIT>
+ 8000920:	f000 fa98 	bl	8000e54 <LED_TRAFFIC_INIT>
 				init = 1;
  8000924:	4b9c      	ldr	r3, [pc, #624]	; (8000b98 <fsm_for_output_processing+0x2f4>)
  8000926:	2201      	movs	r2, #1
@@ -1287,7 +1287,6 @@ void fsm_for_output_processing (void){
 		break;
  8000936:	e18a      	b.n	8000c4e <fsm_for_output_processing+0x3aa>
 	case MODE_2:
-//		HAL_GPIO_TogglePin(LED_TOGGLE_GPIO_Port, LED_TOGGLE_Pin);
 		update_clock_buffer(counter_mode2, 2);
  8000938:	4b95      	ldr	r3, [pc, #596]	; (8000b90 <fsm_for_output_processing+0x2ec>)
  800093a:	781b      	ldrb	r3, [r3, #0]
@@ -1338,7 +1337,7 @@ void fsm_for_output_processing (void){
  800098a:	2200      	movs	r2, #0
  800098c:	701a      	strb	r2, [r3, #0]
 				LED_TRAFFIC_INIT();
- 800098e:	f000 fab3 	bl	8000ef8 <LED_TRAFFIC_INIT>
+ 800098e:	f000 fa61 	bl	8000e54 <LED_TRAFFIC_INIT>
 				setTimer(1000);
  8000992:	f44f 707a 	mov.w	r0, #1000	; 0x3e8
  8000996:	f000 f971 	bl	8000c7c <setTimer>
@@ -1410,7 +1409,7 @@ void fsm_for_output_processing (void){
  8000a06:	781b      	ldrb	r3, [r3, #0]
  8000a08:	2100      	movs	r1, #0
  8000a0a:	4618      	mov	r0, r3
- 8000a0c:	f000 fa22 	bl	8000e54 <LED_TRAFFIC_STORE_BUFFER>
+ 8000a0c:	f000 fa86 	bl	8000f1c <LED_TRAFFIC_STORE_BUFFER>
  8000a10:	e002      	b.n	8000a18 <fsm_for_output_processing+0x174>
 			}
 		} else {
@@ -1481,7 +1480,7 @@ void fsm_for_output_processing (void){
  8000a80:	2200      	movs	r2, #0
  8000a82:	701a      	strb	r2, [r3, #0]
 				LED_TRAFFIC_INIT();
- 8000a84:	f000 fa38 	bl	8000ef8 <LED_TRAFFIC_INIT>
+ 8000a84:	f000 f9e6 	bl	8000e54 <LED_TRAFFIC_INIT>
 				setTimer(1000);
  8000a88:	f44f 707a 	mov.w	r0, #1000	; 0x3e8
  8000a8c:	f000 f8f6 	bl	8000c7c <setTimer>
@@ -1555,7 +1554,7 @@ void fsm_for_output_processing (void){
  8000afc:	781b      	ldrb	r3, [r3, #0]
  8000afe:	2101      	movs	r1, #1
  8000b00:	4618      	mov	r0, r3
- 8000b02:	f000 f9a7 	bl	8000e54 <LED_TRAFFIC_STORE_BUFFER>
+ 8000b02:	f000 fa0b 	bl	8000f1c <LED_TRAFFIC_STORE_BUFFER>
  8000b06:	e002      	b.n	8000b0e <fsm_for_output_processing+0x26a>
 			}
 		} else {
@@ -1622,9 +1621,9 @@ void fsm_for_output_processing (void){
  8000b6e:	2200      	movs	r2, #0
  8000b70:	701a      	strb	r2, [r3, #0]
 				LED_TRAFFIC_LOAD_BUFFER();
- 8000b72:	f000 f983 	bl	8000e7c <LED_TRAFFIC_LOAD_BUFFER>
+ 8000b72:	f000 f995 	bl	8000ea0 <LED_TRAFFIC_LOAD_BUFFER>
 				LED_TRAFFIC_INIT();
- 8000b76:	f000 f9bf 	bl	8000ef8 <LED_TRAFFIC_INIT>
+ 8000b76:	f000 f96d 	bl	8000e54 <LED_TRAFFIC_INIT>
 				setTimer(1000);
  8000b7a:	f44f 707a 	mov.w	r0, #1000	; 0x3e8
  8000b7e:	f000 f87d 	bl	8000c7c <setTimer>
@@ -1711,7 +1710,7 @@ void fsm_for_output_processing (void){
  8000c22:	781b      	ldrb	r3, [r3, #0]
  8000c24:	2102      	movs	r1, #2
  8000c26:	4618      	mov	r0, r3
- 8000c28:	f000 f914 	bl	8000e54 <LED_TRAFFIC_STORE_BUFFER>
+ 8000c28:	f000 f978 	bl	8000f1c <LED_TRAFFIC_STORE_BUFFER>
  8000c2c:	e002      	b.n	8000c34 <fsm_for_output_processing+0x390>
 			}
 		} else {
@@ -2192,141 +2191,141 @@ void SystemInit (void)
  8000e50:	bc80      	pop	{r7}
  8000e52:	4770      	bx	lr
 
-08000e54 <LED_TRAFFIC_STORE_BUFFER>:
+08000e54 <LED_TRAFFIC_INIT>:
 
 static uint8_t bufferTimerForLED[N0_OF_LED];
 static uint8_t counterRED1, counterAMBER1, counterGREEN1,  counterRED2, counterAMBER2, counterGREEN2;
 static uint8_t timeRED, timeAMBER, timeGREEN;
 
-void LED_TRAFFIC_STORE_BUFFER(uint8_t time, uint8_t index){
- 8000e54:	b480      	push	{r7}
- 8000e56:	b083      	sub	sp, #12
- 8000e58:	af00      	add	r7, sp, #0
- 8000e5a:	4603      	mov	r3, r0
- 8000e5c:	460a      	mov	r2, r1
- 8000e5e:	71fb      	strb	r3, [r7, #7]
- 8000e60:	4613      	mov	r3, r2
- 8000e62:	71bb      	strb	r3, [r7, #6]
-	bufferTimerForLED[index] = time;
- 8000e64:	79bb      	ldrb	r3, [r7, #6]
- 8000e66:	4904      	ldr	r1, [pc, #16]	; (8000e78 <LED_TRAFFIC_STORE_BUFFER+0x24>)
- 8000e68:	79fa      	ldrb	r2, [r7, #7]
- 8000e6a:	54ca      	strb	r2, [r1, r3]
+void LED_TRAFFIC_INIT(void){
+ 8000e54:	b580      	push	{r7, lr}
+ 8000e56:	af00      	add	r7, sp, #0
+	HAL_GPIO_WritePin(LED_RED1_GPIO_Port, LED_RED1_Pin, SET);
+ 8000e58:	2201      	movs	r2, #1
+ 8000e5a:	2108      	movs	r1, #8
+ 8000e5c:	480f      	ldr	r0, [pc, #60]	; (8000e9c <LED_TRAFFIC_INIT+0x48>)
+ 8000e5e:	f000 fca0 	bl	80017a2 <HAL_GPIO_WritePin>
+	HAL_GPIO_WritePin(LED_RED2_GPIO_Port, LED_RED2_Pin, SET);
+ 8000e62:	2201      	movs	r2, #1
+ 8000e64:	2140      	movs	r1, #64	; 0x40
+ 8000e66:	480d      	ldr	r0, [pc, #52]	; (8000e9c <LED_TRAFFIC_INIT+0x48>)
+ 8000e68:	f000 fc9b 	bl	80017a2 <HAL_GPIO_WritePin>
+	HAL_GPIO_WritePin(LED_AMBER1_GPIO_Port, LED_AMBER1_Pin, SET);
+ 8000e6c:	2201      	movs	r2, #1
+ 8000e6e:	2120      	movs	r1, #32
+ 8000e70:	480a      	ldr	r0, [pc, #40]	; (8000e9c <LED_TRAFFIC_INIT+0x48>)
+ 8000e72:	f000 fc96 	bl	80017a2 <HAL_GPIO_WritePin>
+	HAL_GPIO_WritePin(LED_AMBER2_GPIO_Port, LED_AMBER2_Pin, SET);
+ 8000e76:	2201      	movs	r2, #1
+ 8000e78:	f44f 7180 	mov.w	r1, #256	; 0x100
+ 8000e7c:	4807      	ldr	r0, [pc, #28]	; (8000e9c <LED_TRAFFIC_INIT+0x48>)
+ 8000e7e:	f000 fc90 	bl	80017a2 <HAL_GPIO_WritePin>
+	HAL_GPIO_WritePin(LED_GREEN1_GPIO_Port, LED_GREEN1_Pin, SET);
+ 8000e82:	2201      	movs	r2, #1
+ 8000e84:	2110      	movs	r1, #16
+ 8000e86:	4805      	ldr	r0, [pc, #20]	; (8000e9c <LED_TRAFFIC_INIT+0x48>)
+ 8000e88:	f000 fc8b 	bl	80017a2 <HAL_GPIO_WritePin>
+	HAL_GPIO_WritePin(LED_GREEN2_GPIO_Port, LED_GREEN2_Pin, SET);
+ 8000e8c:	2201      	movs	r2, #1
+ 8000e8e:	2180      	movs	r1, #128	; 0x80
+ 8000e90:	4802      	ldr	r0, [pc, #8]	; (8000e9c <LED_TRAFFIC_INIT+0x48>)
+ 8000e92:	f000 fc86 	bl	80017a2 <HAL_GPIO_WritePin>
 }
- 8000e6c:	bf00      	nop
- 8000e6e:	370c      	adds	r7, #12
- 8000e70:	46bd      	mov	sp, r7
- 8000e72:	bc80      	pop	{r7}
- 8000e74:	4770      	bx	lr
- 8000e76:	bf00      	nop
- 8000e78:	20000068 	.word	0x20000068
+ 8000e96:	bf00      	nop
+ 8000e98:	bd80      	pop	{r7, pc}
+ 8000e9a:	bf00      	nop
+ 8000e9c:	40010c00 	.word	0x40010c00
 
-08000e7c <LED_TRAFFIC_LOAD_BUFFER>:
+08000ea0 <LED_TRAFFIC_LOAD_BUFFER>:
 
 void LED_TRAFFIC_LOAD_BUFFER(void){
- 8000e7c:	b480      	push	{r7}
- 8000e7e:	af00      	add	r7, sp, #0
+ 8000ea0:	b480      	push	{r7}
+ 8000ea2:	af00      	add	r7, sp, #0
 	counterRED1 = bufferTimerForLED[RED];
- 8000e80:	4b13      	ldr	r3, [pc, #76]	; (8000ed0 <LED_TRAFFIC_LOAD_BUFFER+0x54>)
- 8000e82:	781a      	ldrb	r2, [r3, #0]
- 8000e84:	4b13      	ldr	r3, [pc, #76]	; (8000ed4 <LED_TRAFFIC_LOAD_BUFFER+0x58>)
- 8000e86:	701a      	strb	r2, [r3, #0]
+ 8000ea4:	4b13      	ldr	r3, [pc, #76]	; (8000ef4 <LED_TRAFFIC_LOAD_BUFFER+0x54>)
+ 8000ea6:	781a      	ldrb	r2, [r3, #0]
+ 8000ea8:	4b13      	ldr	r3, [pc, #76]	; (8000ef8 <LED_TRAFFIC_LOAD_BUFFER+0x58>)
+ 8000eaa:	701a      	strb	r2, [r3, #0]
 	counterAMBER1 = bufferTimerForLED[AMBER];
- 8000e88:	4b11      	ldr	r3, [pc, #68]	; (8000ed0 <LED_TRAFFIC_LOAD_BUFFER+0x54>)
- 8000e8a:	785a      	ldrb	r2, [r3, #1]
- 8000e8c:	4b12      	ldr	r3, [pc, #72]	; (8000ed8 <LED_TRAFFIC_LOAD_BUFFER+0x5c>)
- 8000e8e:	701a      	strb	r2, [r3, #0]
+ 8000eac:	4b11      	ldr	r3, [pc, #68]	; (8000ef4 <LED_TRAFFIC_LOAD_BUFFER+0x54>)
+ 8000eae:	785a      	ldrb	r2, [r3, #1]
+ 8000eb0:	4b12      	ldr	r3, [pc, #72]	; (8000efc <LED_TRAFFIC_LOAD_BUFFER+0x5c>)
+ 8000eb2:	701a      	strb	r2, [r3, #0]
 	counterGREEN1 = bufferTimerForLED[GREEN];
- 8000e90:	4b0f      	ldr	r3, [pc, #60]	; (8000ed0 <LED_TRAFFIC_LOAD_BUFFER+0x54>)
- 8000e92:	789a      	ldrb	r2, [r3, #2]
- 8000e94:	4b11      	ldr	r3, [pc, #68]	; (8000edc <LED_TRAFFIC_LOAD_BUFFER+0x60>)
- 8000e96:	701a      	strb	r2, [r3, #0]
+ 8000eb4:	4b0f      	ldr	r3, [pc, #60]	; (8000ef4 <LED_TRAFFIC_LOAD_BUFFER+0x54>)
+ 8000eb6:	789a      	ldrb	r2, [r3, #2]
+ 8000eb8:	4b11      	ldr	r3, [pc, #68]	; (8000f00 <LED_TRAFFIC_LOAD_BUFFER+0x60>)
+ 8000eba:	701a      	strb	r2, [r3, #0]
 	counterRED2 = bufferTimerForLED[RED];
- 8000e98:	4b0d      	ldr	r3, [pc, #52]	; (8000ed0 <LED_TRAFFIC_LOAD_BUFFER+0x54>)
- 8000e9a:	781a      	ldrb	r2, [r3, #0]
- 8000e9c:	4b10      	ldr	r3, [pc, #64]	; (8000ee0 <LED_TRAFFIC_LOAD_BUFFER+0x64>)
- 8000e9e:	701a      	strb	r2, [r3, #0]
+ 8000ebc:	4b0d      	ldr	r3, [pc, #52]	; (8000ef4 <LED_TRAFFIC_LOAD_BUFFER+0x54>)
+ 8000ebe:	781a      	ldrb	r2, [r3, #0]
+ 8000ec0:	4b10      	ldr	r3, [pc, #64]	; (8000f04 <LED_TRAFFIC_LOAD_BUFFER+0x64>)
+ 8000ec2:	701a      	strb	r2, [r3, #0]
 	counterAMBER2 = bufferTimerForLED[AMBER];
- 8000ea0:	4b0b      	ldr	r3, [pc, #44]	; (8000ed0 <LED_TRAFFIC_LOAD_BUFFER+0x54>)
- 8000ea2:	785a      	ldrb	r2, [r3, #1]
- 8000ea4:	4b0f      	ldr	r3, [pc, #60]	; (8000ee4 <LED_TRAFFIC_LOAD_BUFFER+0x68>)
- 8000ea6:	701a      	strb	r2, [r3, #0]
+ 8000ec4:	4b0b      	ldr	r3, [pc, #44]	; (8000ef4 <LED_TRAFFIC_LOAD_BUFFER+0x54>)
+ 8000ec6:	785a      	ldrb	r2, [r3, #1]
+ 8000ec8:	4b0f      	ldr	r3, [pc, #60]	; (8000f08 <LED_TRAFFIC_LOAD_BUFFER+0x68>)
+ 8000eca:	701a      	strb	r2, [r3, #0]
 	counterGREEN2 = bufferTimerForLED[GREEN];
- 8000ea8:	4b09      	ldr	r3, [pc, #36]	; (8000ed0 <LED_TRAFFIC_LOAD_BUFFER+0x54>)
- 8000eaa:	789a      	ldrb	r2, [r3, #2]
- 8000eac:	4b0e      	ldr	r3, [pc, #56]	; (8000ee8 <LED_TRAFFIC_LOAD_BUFFER+0x6c>)
- 8000eae:	701a      	strb	r2, [r3, #0]
+ 8000ecc:	4b09      	ldr	r3, [pc, #36]	; (8000ef4 <LED_TRAFFIC_LOAD_BUFFER+0x54>)
+ 8000ece:	789a      	ldrb	r2, [r3, #2]
+ 8000ed0:	4b0e      	ldr	r3, [pc, #56]	; (8000f0c <LED_TRAFFIC_LOAD_BUFFER+0x6c>)
+ 8000ed2:	701a      	strb	r2, [r3, #0]
 	timeRED = bufferTimerForLED[RED];
- 8000eb0:	4b07      	ldr	r3, [pc, #28]	; (8000ed0 <LED_TRAFFIC_LOAD_BUFFER+0x54>)
- 8000eb2:	781a      	ldrb	r2, [r3, #0]
- 8000eb4:	4b0d      	ldr	r3, [pc, #52]	; (8000eec <LED_TRAFFIC_LOAD_BUFFER+0x70>)
- 8000eb6:	701a      	strb	r2, [r3, #0]
+ 8000ed4:	4b07      	ldr	r3, [pc, #28]	; (8000ef4 <LED_TRAFFIC_LOAD_BUFFER+0x54>)
+ 8000ed6:	781a      	ldrb	r2, [r3, #0]
+ 8000ed8:	4b0d      	ldr	r3, [pc, #52]	; (8000f10 <LED_TRAFFIC_LOAD_BUFFER+0x70>)
+ 8000eda:	701a      	strb	r2, [r3, #0]
 	timeAMBER = bufferTimerForLED[AMBER];
- 8000eb8:	4b05      	ldr	r3, [pc, #20]	; (8000ed0 <LED_TRAFFIC_LOAD_BUFFER+0x54>)
- 8000eba:	785a      	ldrb	r2, [r3, #1]
- 8000ebc:	4b0c      	ldr	r3, [pc, #48]	; (8000ef0 <LED_TRAFFIC_LOAD_BUFFER+0x74>)
- 8000ebe:	701a      	strb	r2, [r3, #0]
+ 8000edc:	4b05      	ldr	r3, [pc, #20]	; (8000ef4 <LED_TRAFFIC_LOAD_BUFFER+0x54>)
+ 8000ede:	785a      	ldrb	r2, [r3, #1]
+ 8000ee0:	4b0c      	ldr	r3, [pc, #48]	; (8000f14 <LED_TRAFFIC_LOAD_BUFFER+0x74>)
+ 8000ee2:	701a      	strb	r2, [r3, #0]
 	timeGREEN = bufferTimerForLED[GREEN];
- 8000ec0:	4b03      	ldr	r3, [pc, #12]	; (8000ed0 <LED_TRAFFIC_LOAD_BUFFER+0x54>)
- 8000ec2:	789a      	ldrb	r2, [r3, #2]
- 8000ec4:	4b0b      	ldr	r3, [pc, #44]	; (8000ef4 <LED_TRAFFIC_LOAD_BUFFER+0x78>)
- 8000ec6:	701a      	strb	r2, [r3, #0]
+ 8000ee4:	4b03      	ldr	r3, [pc, #12]	; (8000ef4 <LED_TRAFFIC_LOAD_BUFFER+0x54>)
+ 8000ee6:	789a      	ldrb	r2, [r3, #2]
+ 8000ee8:	4b0b      	ldr	r3, [pc, #44]	; (8000f18 <LED_TRAFFIC_LOAD_BUFFER+0x78>)
+ 8000eea:	701a      	strb	r2, [r3, #0]
 }
- 8000ec8:	bf00      	nop
- 8000eca:	46bd      	mov	sp, r7
- 8000ecc:	bc80      	pop	{r7}
- 8000ece:	4770      	bx	lr
- 8000ed0:	20000068 	.word	0x20000068
- 8000ed4:	2000006b 	.word	0x2000006b
- 8000ed8:	2000006c 	.word	0x2000006c
- 8000edc:	2000006d 	.word	0x2000006d
- 8000ee0:	2000006e 	.word	0x2000006e
- 8000ee4:	2000006f 	.word	0x2000006f
- 8000ee8:	20000070 	.word	0x20000070
- 8000eec:	20000071 	.word	0x20000071
- 8000ef0:	20000072 	.word	0x20000072
- 8000ef4:	20000073 	.word	0x20000073
+ 8000eec:	bf00      	nop
+ 8000eee:	46bd      	mov	sp, r7
+ 8000ef0:	bc80      	pop	{r7}
+ 8000ef2:	4770      	bx	lr
+ 8000ef4:	20000068 	.word	0x20000068
+ 8000ef8:	2000006b 	.word	0x2000006b
+ 8000efc:	2000006c 	.word	0x2000006c
+ 8000f00:	2000006d 	.word	0x2000006d
+ 8000f04:	2000006e 	.word	0x2000006e
+ 8000f08:	2000006f 	.word	0x2000006f
+ 8000f0c:	20000070 	.word	0x20000070
+ 8000f10:	20000071 	.word	0x20000071
+ 8000f14:	20000072 	.word	0x20000072
+ 8000f18:	20000073 	.word	0x20000073
 
-08000ef8 <LED_TRAFFIC_INIT>:
+08000f1c <LED_TRAFFIC_STORE_BUFFER>:
 
-void LED_TRAFFIC_INIT(void){
- 8000ef8:	b580      	push	{r7, lr}
- 8000efa:	af00      	add	r7, sp, #0
-	HAL_GPIO_WritePin(LED_RED1_GPIO_Port, LED_RED1_Pin, SET);
- 8000efc:	2201      	movs	r2, #1
- 8000efe:	2108      	movs	r1, #8
- 8000f00:	480f      	ldr	r0, [pc, #60]	; (8000f40 <LED_TRAFFIC_INIT+0x48>)
- 8000f02:	f000 fc4e 	bl	80017a2 <HAL_GPIO_WritePin>
-	HAL_GPIO_WritePin(LED_RED2_GPIO_Port, LED_RED2_Pin, SET);
- 8000f06:	2201      	movs	r2, #1
- 8000f08:	2140      	movs	r1, #64	; 0x40
- 8000f0a:	480d      	ldr	r0, [pc, #52]	; (8000f40 <LED_TRAFFIC_INIT+0x48>)
- 8000f0c:	f000 fc49 	bl	80017a2 <HAL_GPIO_WritePin>
-	HAL_GPIO_WritePin(LED_AMBER1_GPIO_Port, LED_AMBER1_Pin, SET);
- 8000f10:	2201      	movs	r2, #1
- 8000f12:	2120      	movs	r1, #32
- 8000f14:	480a      	ldr	r0, [pc, #40]	; (8000f40 <LED_TRAFFIC_INIT+0x48>)
- 8000f16:	f000 fc44 	bl	80017a2 <HAL_GPIO_WritePin>
-	HAL_GPIO_WritePin(LED_AMBER2_GPIO_Port, LED_AMBER2_Pin, SET);
- 8000f1a:	2201      	movs	r2, #1
- 8000f1c:	f44f 7180 	mov.w	r1, #256	; 0x100
- 8000f20:	4807      	ldr	r0, [pc, #28]	; (8000f40 <LED_TRAFFIC_INIT+0x48>)
- 8000f22:	f000 fc3e 	bl	80017a2 <HAL_GPIO_WritePin>
-	HAL_GPIO_WritePin(LED_GREEN1_GPIO_Port, LED_GREEN1_Pin, SET);
- 8000f26:	2201      	movs	r2, #1
- 8000f28:	2110      	movs	r1, #16
- 8000f2a:	4805      	ldr	r0, [pc, #20]	; (8000f40 <LED_TRAFFIC_INIT+0x48>)
- 8000f2c:	f000 fc39 	bl	80017a2 <HAL_GPIO_WritePin>
-	HAL_GPIO_WritePin(LED_GREEN2_GPIO_Port, LED_GREEN2_Pin, SET);
- 8000f30:	2201      	movs	r2, #1
- 8000f32:	2180      	movs	r1, #128	; 0x80
- 8000f34:	4802      	ldr	r0, [pc, #8]	; (8000f40 <LED_TRAFFIC_INIT+0x48>)
- 8000f36:	f000 fc34 	bl	80017a2 <HAL_GPIO_WritePin>
+void LED_TRAFFIC_STORE_BUFFER(uint8_t time, uint8_t index){
+ 8000f1c:	b480      	push	{r7}
+ 8000f1e:	b083      	sub	sp, #12
+ 8000f20:	af00      	add	r7, sp, #0
+ 8000f22:	4603      	mov	r3, r0
+ 8000f24:	460a      	mov	r2, r1
+ 8000f26:	71fb      	strb	r3, [r7, #7]
+ 8000f28:	4613      	mov	r3, r2
+ 8000f2a:	71bb      	strb	r3, [r7, #6]
+	bufferTimerForLED[index] = time;
+ 8000f2c:	79bb      	ldrb	r3, [r7, #6]
+ 8000f2e:	4904      	ldr	r1, [pc, #16]	; (8000f40 <LED_TRAFFIC_STORE_BUFFER+0x24>)
+ 8000f30:	79fa      	ldrb	r2, [r7, #7]
+ 8000f32:	54ca      	strb	r2, [r1, r3]
 }
- 8000f3a:	bf00      	nop
- 8000f3c:	bd80      	pop	{r7, pc}
+ 8000f34:	bf00      	nop
+ 8000f36:	370c      	adds	r7, #12
+ 8000f38:	46bd      	mov	sp, r7
+ 8000f3a:	bc80      	pop	{r7}
+ 8000f3c:	4770      	bx	lr
  8000f3e:	bf00      	nop
- 8000f40:	40010c00 	.word	0x40010c00
+ 8000f40:	20000068 	.word	0x20000068
 
 08000f44 <LED_VERTICAL_RUN>:
 

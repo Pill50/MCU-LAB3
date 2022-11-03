@@ -44,7 +44,6 @@ void fsm_for_output_processing (void){
 		}
 		break;
 	case MODE_2:
-//		HAL_GPIO_TogglePin(LED_TOGGLE_GPIO_Port, LED_TOGGLE_Pin);
 		update_clock_buffer(counter_mode2, 2);
 		update_seven_segment_driver(led_7_flag);
 		if (blink_flag){
