@@ -106,7 +106,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   setTimer(1000);
   setBlinkLedTimer(250);
-  setLED7Timer(250);
+  setLED7Timer(1000);
   while (1)
   {
 	  fsm_for_output_processing();
